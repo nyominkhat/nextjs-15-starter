@@ -9,6 +9,7 @@ export const api = async <T>(
   method: HTTPMethod,
   data?: unknown,
   params?: Record<string, unknown>,
+  config?: Record<string, unknown>
 ): Promise<T> => {
   try {
     const response = await axiosInstance({
@@ -16,6 +17,7 @@ export const api = async <T>(
       method,
       data,
       params,
+      ...config,
     });
     return response.data as T;
   } catch (error: unknown) {
@@ -37,5 +39,13 @@ api.put = <T>(url: string, data?: unknown, params?: Record<string, unknown>) =>
 
 api.delete = <T>(url: string, params?: Record<string, unknown>) =>
   api<T>(url, 'DELETE', undefined, params);
+
+api.postForm = <T>(url: string, formData: FormData, params?: Record<string, unknown>) => {
+  return api<T>(url, 'POST', formData, params, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
 
 export default api;

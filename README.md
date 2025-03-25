@@ -3,7 +3,7 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone -------------
+git clone https://github.com/nyominkhat/nextjs-15-starter.git
 ```
 
 ### 2. Install Dependencies

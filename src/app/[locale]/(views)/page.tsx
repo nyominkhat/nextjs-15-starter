@@ -1,19 +1,17 @@
-import React from 'react';
-import { useTranslations } from 'next-intl';
+'use client';
+
+import { useSession } from 'next-auth/react';
 
 import TestForm from '@/components/TestForm';
 import PageWrapper from '@/components/PageWrapper';
-import MainBanner from '@/components/MainBanner';
-
-import { Link } from '@/i18n/routing';
 
 const Home = () => {
-  const t = useTranslations('HomePage');
+  const { data: session } = useSession();
+
+  console.log('client session => ', session);
 
   return (
     <>
-      <MainBanner />
-
       <PageWrapper>
         <TestForm />
       </PageWrapper>

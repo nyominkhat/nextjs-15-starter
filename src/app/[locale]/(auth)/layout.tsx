@@ -8,10 +8,12 @@ import { notFound } from 'next/navigation';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-const AuthLayout: React.FC<AuthLayoutProps> = async ({ children, params: { locale } }) => {
+const AuthLayout: React.FC<AuthLayoutProps> = async ({ children, params }) => {
+  const { locale } = await params;
+
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }

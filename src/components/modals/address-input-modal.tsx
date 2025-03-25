@@ -1,7 +1,7 @@
 import React from 'react';
 import DaumPostcode, { Address } from 'react-daum-postcode';
 
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 
 interface AddressInputModalProps {
   handleAddressComplete: ((address: Address) => void) | undefined;
@@ -16,6 +16,7 @@ const AddressInputModal: React.FC<AddressInputModalProps> = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogTitle></DialogTitle>
       <DialogContent className="p-8 sm:max-w-3xl">
         <DaumPostcode onComplete={handleAddressComplete} style={{ height: '445px' }} />
       </DialogContent>

@@ -9,7 +9,7 @@ export const api = async <T>(
   method: HTTPMethod,
   data?: unknown,
   params?: Record<string, unknown>,
-  config?: Record<string, unknown>
+  config?: Record<string, unknown>,
 ): Promise<T> => {
   try {
     const response = await axiosInstance({

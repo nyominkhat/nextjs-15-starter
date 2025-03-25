@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn } from 'next-auth/react';
 
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
@@ -12,8 +13,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Link } from '@/i18n/routing';
 
 const formSchema = z.object({
-  userId: z.string().min(2, {
-    message: 'UserId must be at least 2 characters.',
+  username: z.string().min(2, {
+    message: 'username must be at least 2 characters.',
   }),
   password: z.string().min(2, {
     message: 'Password must br at least 2 characters',
@@ -25,17 +26,33 @@ const LoginForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       password: '',
+      username: '',
     },
   });
 
   const handleLogin = (values: z.infer<typeof formSchema>) => {
     console.log(values);
+
+    signIn('credentials', {
+      redirect: false,
+      password: form.getValues('password'),
+      username: form.getValues('username'),
+    })
+      .then((response) => {
+        if (response?.error) {
+          window.alert(response.error);
+        }
+      })
+      .finally(() => {
+        form.reset();
+        window.sessionStorage.clear();
+      });
   };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleLogin)} className="flex flex-col gap-5">
-        {/* User id  */}
-        <NormalInput className="h-11" form={form} name="userId" label="UserId" />
+        {/* Username  */}
+        <NormalInput className="h-11" form={form} name="username" label="Username" />
 
         {/* Password  */}
         <div className="flex flex-col gap-4">

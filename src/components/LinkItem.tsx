@@ -2,14 +2,12 @@ import React, { useMemo, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
-import { CustomMenuTypes } from '@/components/Header';
-
 import { ucEveryFirstWord } from '@/utils/stringFormatters';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
 interface LinkItemProps {
-  data: CustomMenuTypes;
+  data: any;
 }
 
 const LinkItem: React.FC<LinkItemProps> = ({ data }) => {
@@ -20,7 +18,7 @@ const LinkItem: React.FC<LinkItemProps> = ({ data }) => {
 
   const isActiveLink = useMemo(() => {
     if (hasChildren) {
-      return data.children.some((item) => item.menuUrl === pathname);
+      return data.children.some((item: any) => item.menuUrl === pathname);
     }
   }, [hasChildren, pathname, data]);
 
@@ -38,7 +36,7 @@ const LinkItem: React.FC<LinkItemProps> = ({ data }) => {
       </HoverCardTrigger>
       <HoverCardContent>
         <ul>
-          {data.children.map((item) => {
+          {data.children.map((item: any) => {
             return (
               <li key={item.seq}>
                 <Button variant="link" asChild>

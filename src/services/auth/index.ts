@@ -9,5 +9,9 @@ export const useRegister = () => {
 
       return response;
     },
+    meta: {
+      successMessage: '',
+      errorMessage: '',
+    },
   });
 };

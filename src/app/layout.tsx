@@ -2,6 +2,8 @@ import { roboto, rubik } from '@/utils/font';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 
+import { Toaster } from '@/components/ui/sonner';
+
 import { QueryProvider } from '@/providers/query-provider';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -19,6 +21,8 @@ const RootLayout = ({
         suppressHydrationWarning={true}
       >
         <QueryProvider>{children}</QueryProvider>
+
+        <Toaster />
       </body>
     </html>
   );

@@ -21,11 +21,9 @@ const AuthLayout: React.FC<AuthLayoutProps> = async ({ children, params }) => {
   const messages = await getMessages();
 
   return (
-    <html suppressHydrationWarning={true}>
-      <body suppressHydrationWarning={true}>
-        <NextIntlClientProvider messages={messages}> {children}</NextIntlClientProvider>
-      </body>
-    </html>
+    <main suppressHydrationWarning={true}>
+      <NextIntlClientProvider messages={messages}> {children}</NextIntlClientProvider>
+    </main>
   );
 };
 

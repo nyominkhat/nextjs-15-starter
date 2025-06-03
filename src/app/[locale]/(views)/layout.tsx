@@ -41,15 +41,13 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning={true}>
+    <main lang={locale} suppressHydrationWarning={true}>
       {/* Font from utils/font you can modify font in that file and add font variable in tailwind.config */}
-      <body suppressHydrationWarning={true}>
-        <SiteLayout>
-          <NextIntlClientProvider messages={messages}>
-            <SessionProvider>{children}</SessionProvider>
-          </NextIntlClientProvider>
-        </SiteLayout>
-      </body>
-    </html>
+      <SiteLayout>
+        <NextIntlClientProvider messages={messages}>
+          <SessionProvider>{children}</SessionProvider>
+        </NextIntlClientProvider>
+      </SiteLayout>
+    </main>
   );
 }

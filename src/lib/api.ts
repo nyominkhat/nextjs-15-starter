@@ -4,7 +4,7 @@ import axiosInstance from '@/lib/axiosConfig';
 
 type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
-export const api = async <T>(
+const api = async <T>(
   url: string,
   method: HTTPMethod,
   data?: unknown,

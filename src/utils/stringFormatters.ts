@@ -23,8 +23,8 @@ export const stringCutter = (string = '', counts = 40) => {
 };
 
 export const stringDashCutter = (string = '') => {
-  return string.replace(/-/g, '')
-}
+  return string.replace(/-/g, '');
+};
 
 export const parseEleText = (stringValue: string) => {
   return stringValue

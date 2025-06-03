@@ -29,25 +29,23 @@ export default async function LocaleLayout({
 
   console.log('session?.user => ', session?.user);
 
-  if (!session?.user)
-    return redirect({
-      href: {
-        pathname: '/login',
-        query: undefined,
-      },
-      locale,
-    });
+  // if (!session?.user)
+  //   return redirect({
+  //     href: {
+  //       pathname: '/login',
+  //       query: undefined,
+  //     },
+  //     locale,
+  //   });
 
   const messages = await getMessages();
 
   return (
-    <main lang={locale} suppressHydrationWarning={true}>
+    <SiteLayout>
       {/* Font from utils/font you can modify font in that file and add font variable in tailwind.config */}
-      <SiteLayout>
-        <NextIntlClientProvider messages={messages}>
-          <SessionProvider>{children}</SessionProvider>
-        </NextIntlClientProvider>
-      </SiteLayout>
-    </main>
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <SessionProvider>{children}</SessionProvider>
+      </NextIntlClientProvider>
+    </SiteLayout>
   );
 }

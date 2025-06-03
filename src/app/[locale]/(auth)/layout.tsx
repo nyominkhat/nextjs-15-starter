@@ -20,11 +20,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = async ({ children, params }) => {
 
   const messages = await getMessages();
 
-  return (
-    <main suppressHydrationWarning={true}>
-      <NextIntlClientProvider messages={messages}> {children}</NextIntlClientProvider>
-    </main>
-  );
+  return <NextIntlClientProvider messages={messages}> {children}</NextIntlClientProvider>;
 };
 
 export default AuthLayout;
